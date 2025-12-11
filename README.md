@@ -162,43 +162,47 @@ Frontend — Vercel
 - Env var:
   VITE_API_BASE=https://modex-saurabh.onrender.com
 
+
+---
 ```mermaid
 flowchart TB
-  %% Nodes
-  A[Users<br/>(Browser / Mobile)] -->|HTTP(S)| B[Frontend<br/>(Vercel)"]
-  B --> |REST API (JSON)| C[Backend API<br/>(Express on Render)]
-  C --> |SQL (pg) / SSL| D[(Postgres DB<br/>(Render Managed))]
-  G[GitHub Repository<br/>(meetsaurabhh/modex-Saurabh)] -.-> |Push / PR| E(Vercel - Frontend)
-  G -.-> |Push / PR| F(Render - Backend)
-  E --> |Auto Deploy| B
-  F --> |Auto Deploy| C
 
-  subgraph Migrations
-    M1["migrations/meds_init.sql"]
-    M2["psql / Render SQL editor"]
+  %% ========= Users =========
+  A[Users<br/>(Browser / Client)] -->|HTTPS| B[Frontend<br/>(React + Vite on Vercel)]
+
+  %% ========= Frontend to Backend =========
+  B --> |REST API Calls (JSON)| C[Backend API<br/>(Node.js + Express on Render)]
+
+  %% ========= Backend to Database =========
+  C --> |SSL + pg Client| D[(PostgreSQL Database<br/>(Render Managed DB))]
+
+  %% ========= CI/CD from GitHub =========
+  E[GitHub Repository<br/>meetsaurabhh/modex-Saurabh] -.-> |Auto Deploy| B
+  E -.-> |Auto Deploy| C
+
+  %% ========= Migrations =========
+  subgraph M[Database Migrations]
+    M1[migrations/meds_init.sql]
+    M2[psql via Render CLI / SQL Editor]
   end
-  M1 --> M2
-  M2 --> D
+  M1 --> M2 --> D
 
-  subgraph Env
-    EV1["Vercel: VITE_API_BASE"]
-    EV2["Render: DATABASE_URL"]
+  %% ========= Environment Variables =========
+  subgraph ENV[Environment Variables]
+    V1[Vercel:<br/>VITE_API_BASE]
+    V2[Render:<br/>DATABASE_URL]
   end
-  EV1 --> B
-  EV2 --> C
+  V1 --> B
+  V2 --> C
 
+  %% ========= Styling =========
   style A fill:#f9f,stroke:#333,stroke-width:1px
   style B fill:#61dafb,stroke:#333,stroke-width:1px
   style C fill:#9ad3bc,stroke:#333,stroke-width:1px
   style D fill:#336791,stroke:#fff,stroke-width:1px
-  style G fill:#24292f,stroke:#fff,stroke-width:1px
-  style Migrations fill:#fff8c6,stroke:#b58900,stroke-width:1px
-  style Env fill:#f0f0f0,stroke:#999,stroke-width:1px
-
-  %% Notes
-  classDef small font-size:12px;
-  note1((Note)):::small
-  note1 ---|"CORS enabled, SSL required for DB"| C
+  style E fill:#24292f,stroke:#fff,stroke-width:1px
+  style M fill:#fff8c6,stroke:#b58900,stroke-width:1px
+  style ENV fill:#f0f0f0,stroke:#999,stroke-width:1px
 ```
 
 ---
