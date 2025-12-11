@@ -166,45 +166,22 @@ Frontend — Vercel
 ---
 ```mermaid
 flowchart TB
+  A[Users (Browser)] -->|HTTPS| B[Frontend (React + Vite on Vercel)]
+  B -->|REST JSON| C[Backend (Node + Express on Render)]
+  C -->|pg client over SSL| D[(PostgreSQL on Render)]
 
-  %% ========= Users =========
-  A["Users\n(Browser / Client)"] -->|HTTPS| B["Frontend\n(React + Vite on Vercel)"]
+  E[GitHub repo\nmeetsaurabhh/modex-Saurabh] -.-> B
+  E -.-> C
 
-  %% ========= Frontend to Backend =========
-  B --> |REST API Calls (JSON)| C["Backend API\n(Node.js + Express on Render)"]
-
-  %% ========= Backend to Database =========
-  C --> |SSL + pg Client| D(("PostgreSQL Database\n(Render Managed DB)"))
-
-  %% ========= CI/CD from GitHub =========
-  E["GitHub Repository\n(meetsaurabhh/modex-Saurabh)"] -.-> |Auto Deploy| B
-  E -.-> |Auto Deploy| C
-
-  %% ========= Migrations =========
-  subgraph M["Database Migrations"]
-    M1["migrations/meds_init.sql"]
-    M2["psql via Render CLI / SQL Editor"]
+  subgraph Migrations
+    M1[migrations/meds_init.sql] --> M2[psql / SQL editor]
+    M2 --> D
   end
-  M1 --> M2 --> D
 
-  %% ========= Environment Variables =========
-  subgraph ENV["Environment Variables"]
-    V1["Vercel:\nVITE_API_BASE"]
-    V2["Render:\nDATABASE_URL"]
+  subgraph Env
+    V1[Vercel: VITE_API_BASE] --> B
+    V2[Render: DATABASE_URL] --> C
   end
-  V1 --> B
-  V2 --> C
-
-  %% ========= Styling =========
-  style A fill:#f9f,stroke:#333,stroke-width:1px
-  style B fill:#61dafb,stroke:#333,stroke-width:1px
-  style C fill:#9ad3bc,stroke:#333,stroke-width:1px
-  style D fill:#336791,stroke:#fff,stroke-width:1px
-  style E fill:#24292f,stroke:#fff,stroke-width:1px
-  style M1 fill:#fff8c6,stroke:#b58900,stroke-width:1px
-  style M2 fill:#fff8c6,stroke:#b58900,stroke-width:1px
-  style V1 fill:#f0f0f0,stroke:#999,stroke-width:1px
-  style V2 fill:#f0f0f0,stroke:#999,stroke-width:1px
 ```
 
 ---
