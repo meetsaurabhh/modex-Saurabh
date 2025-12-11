@@ -162,6 +162,31 @@ Frontend — Vercel
 - Env var:
   VITE_API_BASE=https://modex-saurabh.onrender.com
 
+
+```mermaid
+graph LR
+  User((User)) --> CDN
+  CDN --> FE[Frontend (Vercel)]
+  FE --> API[API Gateway / Load Balancer]
+  
+  API --> S1[Medication Service]
+  API --> S2[Interaction Service]
+
+  S1 --> CACHE[(Redis Cache)]
+  S2 --> CACHE
+
+  S1 --> DB[(PostgreSQL Primary)]
+  S2 --> DB
+
+  DB --> R1[(Read Replica 1)]
+  DB --> R2[(Read Replica 2)]
+
+  S2 --> MQ[(Message Queue)]
+  MQ --> Worker[Background Workers]
+
+  Worker --> ANALYTICS[(Analytics Store)]
+```
+
 ---
 STATUS
 --------------------
