@@ -72,3 +72,14 @@ README.md        -- documentation
   1 = Low
   2 = Moderate
   3 = Severe
+
+## Frontend
+
+The frontend is in `/frontend`. To run locally:
+
+1. cd frontend
+2. npm install
+3. npm run dev
+
+Set `VITE_API_BASE` (defaults to `http://localhost:4000`) in `.env` if your backend runs on a different host.
+
