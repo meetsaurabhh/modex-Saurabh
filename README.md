@@ -165,26 +165,26 @@ Frontend — Vercel
 
 ```mermaid
 graph LR
-  User((User)) --> CDN
-  CDN --> FE[Frontend (Vercel)]
+  User --> CDN
+  CDN --> FE[Frontend]
   FE --> API[API Gateway / Load Balancer]
   
   API --> S1[Medication Service]
   API --> S2[Interaction Service]
 
-  S1 --> CACHE[(Redis Cache)]
+  S1 --> CACHE
   S2 --> CACHE
 
-  S1 --> DB[(PostgreSQL Primary)]
+  S1 --> PostgreSQL Primary
   S2 --> DB
 
-  DB --> R1[(Read Replica 1)]
-  DB --> R2[(Read Replica 2)]
+  DB --> Read Replica 1
+  DB --> Read Replica 2
 
-  S2 --> MQ[(Message Queue)]
-  MQ --> Worker[Background Workers]
+  S2 --> Message Queue
+  MQ --> Worker or Background Workers
 
-  Worker --> ANALYTICS[(Analytics Store)]
+  Worker --> ANALYTICS
 ```
 
 ---
