@@ -23,7 +23,7 @@ Database Design (PostgreSQL)
 
 - Tested and verified using live SQL queries.
 
-Backend (Node.js, Express, pg)
+### Backend (Node.js, Express, pg)
 
 Built REST API endpoints for:
 - Fetching the list of medications
@@ -31,13 +31,13 @@ Built REST API endpoints for:
 - Implemented robust error handling and CORS.
 Added secure environment variable configuration with DATABASE_URL + SSL for Render.
 
-Frontend (React, Vite, TypeScript)
+### Frontend (React, Vite, TypeScript)
 - Designed clean UI for selecting medications, checking interactions, and displaying results.
 - Integrated axios to communicate with the backend API.
 - Ensured responsiveness and usability.
 - Fixed TypeScript + Vite build issues for production deployment.
 
-Deployment
+### Deployment
 - Backend deployed to Render with secure configuration and automatic redeploys.
 - Frontend deployed to Vercel using the frontend subdirectory.
 - Verified cross-origin communication between both services.
@@ -161,28 +161,6 @@ Frontend — Vercel
 - Output directory: dist
 - Env var:
   VITE_API_BASE=https://modex-saurabh.onrender.com
-
-
----
-```mermaid
-flowchart TB
-  A[Users (Browser)] -->|HTTPS| B[Frontend (React + Vite on Vercel)]
-  B -->|REST JSON| C[Backend (Node + Express on Render)]
-  C -->|pg client over SSL| D[(PostgreSQL on Render)]
-
-  E[GitHub repo\nmeetsaurabhh/modex-Saurabh] -.-> B
-  E -.-> C
-
-  subgraph Migrations
-    M1[migrations/meds_init.sql] --> M2[psql / SQL editor]
-    M2 --> D
-  end
-
-  subgraph Env
-    V1[Vercel: VITE_API_BASE] --> B
-    V2[Render: DATABASE_URL] --> C
-  end
-```
 
 ---
 STATUS
