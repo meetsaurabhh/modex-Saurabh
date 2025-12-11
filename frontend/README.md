@@ -43,7 +43,7 @@ Deployment
 - Verified cross-origin communication between both services.
 - Validated live interaction checks using curl and UI tests.
 
-====================
+---
 LIVE LINKS
 --------------------
 Frontend (Vercel):
@@ -52,7 +52,7 @@ https://modexsaurabhfrontend.vercel.app
 Backend (Render):
 https://modex-saurabh.onrender.com
 
-====================
+---
 TECH STACK
 --------------------
 Backend:
@@ -67,7 +67,7 @@ Frontend:
 - Vite
 - Hosted on Vercel
 
-====================
+---
 PROJECT STRUCTURE
 --------------------
 modex-Saurabh/
@@ -76,7 +76,7 @@ modex-Saurabh/
 ├── migrations/      # Database schema + seed
 └── docs/            # Screenshots for README
 
-====================
+---
 DATABASE SCHEMA
 --------------------
 MEDICATIONS TABLE
@@ -92,7 +92,7 @@ severity      text
 explanation   text
 alternative   text
 
-====================
+---
 LOCAL SETUP
 --------------------
 
@@ -125,7 +125,7 @@ http://localhost:5173
 When deploying set:
 VITE_API_BASE=https://modex-saurabh.onrender.com
 
-====================
+---
 API DOCUMENTATION
 --------------------
 
@@ -144,7 +144,7 @@ Returns:
   "interactions": [...]
 }
 
-====================
+---
 DEPLOYMENT
 --------------------
 
@@ -161,11 +161,11 @@ Frontend — Vercel
 - Env var:
   VITE_API_BASE=https://modex-saurabh.onrender.com
 
-====================
+---
 STATUS
 --------------------
-Backend API:         DONE
-Database Setup:      DONE
-Frontend UI:         DONE
-Interaction Logic:   DONE
-Deployment:          LIVE
+- Backend API:         DONE
+- Database Setup:      DONE
+- Frontend UI:         DONE
+- Interaction Logic:   DONE
+- Deployment:          LIVE
