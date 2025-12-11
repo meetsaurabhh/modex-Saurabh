@@ -15,7 +15,7 @@ At its core, the system uses a Node.js + Express backend connected to a PostgreS
 
 ## How the Project Was Built
 
-Database Design (PostgreSQL)
+### Database Design (PostgreSQL)
 
 - Structured tables for medications and interactions.
 
@@ -46,10 +46,10 @@ Added secure environment variable configuration with DATABASE_URL + SSL for Rend
 ---
 LIVE LINKS
 --------------------
-Frontend (Vercel):
+## Frontend (Vercel):
 https://modexsaurabhfrontend.vercel.app
 
-Backend (Render):
+## Backend (Render):
 https://modex-saurabh.onrender.com
 
 ---
